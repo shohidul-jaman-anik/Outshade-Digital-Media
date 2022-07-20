@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 const UpdateUser = () => {
-    
+
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { id } = useParams()
-console.log(id)
+    console.log(id)
 
     const onSubmit = async data => {
-        fetch(`http://localhost:5000/allUser/${id}`, {
+        console.log('form data update',data)
+        
+        fetch(`http://localhost:5000/api/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -19,6 +21,7 @@ console.log(id)
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 reset()
                 toast('Update Successfully done')
             })
