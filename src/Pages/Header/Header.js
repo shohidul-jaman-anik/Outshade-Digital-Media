@@ -1,7 +1,26 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const Header = () => {
+    const [user, loading] = useAuthState(auth);
+    console.log(user)
+
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    const handleLogOut = () => {
+        signOut(auth);
+    }
+
+    const handleUpdateProfile=()=>{
+
+    }
+
     return (
 
         <nav class="bg-gray-800">
@@ -41,21 +60,27 @@ const Header = () => {
                         </button>
 
 
-                        <div class="ml-3 relative">
-                            <div>
-                                <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                    <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                                </button>
-                            </div>
 
 
-                            <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                                <Link to="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</Link>
-                                <Link to="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</Link>
-                                <Link to="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</Link>
-                            </div>
+                        <div class="dropdown dropdown-end">
+                            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                                <div class="w-10 rounded-full">
+                                    <img src={user?.photoURL} alt='' />
+                                </div>
+                            </label>
+                            <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                <li>
+                                    <Link to=" " 
+                                    onClick={handleUpdateProfile}
+                                    class="justify-between">
+                                        Update Profile
+                                        <span class="badge">New</span>
+                                    </Link>
+                                </li>
+                                <li><Link to="" onClick={handleLogOut}>Logout</Link></li>
+                            </ul>
                         </div>
+
                     </div>
                 </div>
             </div>

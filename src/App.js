@@ -5,6 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddApi from './Pages/Dashboard/AddApi/AddApi';
 import UpdateUser from './Pages/Dashboard/UpdateUser/UpdateUser';
 import Header from './Pages/Header/Header';
+import Login from './Pages/Form/Login/Login';
+import SignUP from './Pages/Form/SignUp/SignUP';
+import RequireAuth from './Pages/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -12,9 +15,19 @@ function App() {
     <div >
       <Header></Header>
       <Routes>
-        <Route path='/' element={<LoadApi></LoadApi>}></Route>
-        <Route path='/addApi' element={<AddApi></AddApi>}></Route>
+        <Route path='/' element={
+          <RequireAuth>
+            <LoadApi></LoadApi>
+          </RequireAuth>
+        }></Route>
+        <Route path='/addApi' element={
+          <RequireAuth>
+            <AddApi></AddApi>
+          </RequireAuth>
+        }></Route>
         <Route path='/updateUser/:id' element={<UpdateUser></UpdateUser>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/SignUp' element={<SignUP></SignUP>}></Route>
       </Routes>
       <ToastContainer />
     </div>

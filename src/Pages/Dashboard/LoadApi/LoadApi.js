@@ -67,7 +67,7 @@ const LoadApi = () => {
                                 <th>{d.name}</th>
                                 <th>{d.phone}</th>
                                 <td>{d.email}</td>
-                                <td>{d.price}</td>
+                                <td>${d.price}</td>
                                 <th onClick={() => handleEdit(d._id)}>✍Update</th>
                                 <td onClick={() => handleDelete(d._id)}> ❌ </td>
                             </tr>)}
