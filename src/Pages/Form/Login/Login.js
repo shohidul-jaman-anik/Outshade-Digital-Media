@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.css'
-// import loginImg from '../../../Assets/form-illustrator/Sign in-pana.svg'
+import loginImg from '../../../Asset/form-illustrator/Sign in-pana.svg'
 import { useForm } from 'react-hook-form';
 import Loading from '../../Loading/Loading';
 import auth from '../../../firebase.init';
@@ -62,7 +62,7 @@ const Login = () => {
             <div className='loginContainer'>
 
                 <div>
-                    {/* <img className='login-img ' src={loginImg} alt="" /> */}
+                    <img className='login-img ' src={loginImg} alt="" />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} >
                     <h2 className="text-center">Login</h2>

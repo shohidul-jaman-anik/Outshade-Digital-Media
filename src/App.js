@@ -8,6 +8,7 @@ import Header from './Pages/Header/Header';
 import Login from './Pages/Form/Login/Login';
 import SignUP from './Pages/Form/SignUp/SignUP';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
+import UpdateProfile from './Pages/Form/UpdateProfile/UpdateProfile';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           </RequireAuth>
         }></Route>
         <Route path='/updateUser/:id' element={<UpdateUser></UpdateUser>}></Route>
+        <Route path='/updateProfile' element={<UpdateProfile></UpdateProfile>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/SignUp' element={<SignUP></SignUP>}></Route>
       </Routes>

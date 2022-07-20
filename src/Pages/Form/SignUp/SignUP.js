@@ -3,7 +3,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Signup.css'
-// import SignUpImg from '../../../Assets/form-illustrator/Sign up-pana.svg'
+import SignUpImg from '../../../Asset/form-illustrator/Sign in-pana.svg'
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
@@ -45,13 +45,23 @@ const SignUP = () => {
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({ displayName: data.name });
         console.log(data)
+
+        fetch(`http://localhost:5000/form`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => console.log("result",result))
     }
-    
+
     return (
         <div className='loginContainer'>
 
             <div>
-                {/* <img className='login-img ' src={SignUpImg} alt="" /> */}
+                <img className='login-img ' src={SignUpImg} alt="" />
             </div>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <h2 className="text-center font-bold">Sign Up</h2>

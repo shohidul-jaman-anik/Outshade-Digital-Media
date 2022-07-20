@@ -17,9 +17,6 @@ const Header = () => {
         signOut(auth);
     }
 
-    const handleUpdateProfile=()=>{
-
-    }
 
     return (
 
@@ -70,9 +67,8 @@ const Header = () => {
                             </label>
                             <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
-                                    <Link to=" " 
-                                    onClick={handleUpdateProfile}
-                                    class="justify-between">
+                                    <Link to="/updateProfile"
+                                        class="justify-between">
                                         Update Profile
                                         <span class="badge">New</span>
                                     </Link>

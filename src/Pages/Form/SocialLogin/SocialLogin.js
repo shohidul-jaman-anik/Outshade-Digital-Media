@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import './SocialLogin.css'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import googleIcon from '../../../Asset/form-illustrator/google.svg'
 import Loading from '../../Loading/Loading';
 import auth from '../../../firebase.init';
-
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     let navigate = useNavigate();
@@ -35,7 +35,7 @@ const SocialLogin = () => {
                 <button
                     onClick={() => signInWithGoogle()}
                     className="social-button">
-                        {/* <img src={googleIcon} alt="" /> */}
+                        <img src={googleIcon} alt="" />
                     Login with Google
                 </button>
             </div>

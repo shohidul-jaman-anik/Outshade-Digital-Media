@@ -4,18 +4,28 @@ import './LoadApi.css'
 
 
 const LoadApi = () => {
+    const [data1, setData1] = useState([])
     const [data, setData] = useState([])
     const navigate = useNavigate()
+
+    const filterItem = (selectCtg) => {
+        const updateItems = data1.filter(d => {
+            return d.category === selectCtg
+
+        })
+        setData(updateItems)
+    }
 
     useEffect(() => {
         const url = `http://localhost:5000/api`
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log( data)
-                setData(data)
+                // console.log( data)
+                setData1(data)
+
             })
-    }, [])
+    }, [data])
 
 
     const handleDelete = id => {
@@ -45,6 +55,17 @@ const LoadApi = () => {
     return (
         <div>
             <h3>Total api : {data.length}</h3>
+
+
+            <button className='filterBtn' onClick={() =>setData(data)}>ALL Prducts</button>
+
+            <button className='filterBtn' onClick={() => filterItem("Laptop")}>Laptop</button>
+
+            <button className='filterBtn' onClick={() => filterItem("Phone")}>Phone</button>
+
+            <button className='filterBtn' onClick={() => filterItem("Speaker")}>Speaker</button>
+
+            <button className='filterBtn' onClick={() => filterItem("Camera")}>Camera</button>
 
             <div class="overflow-x-auto">
                 <table class="table table-zebra w-full">
